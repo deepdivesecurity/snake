@@ -15,11 +15,17 @@ class Snake:
 
     def create_snake(self):
         for position in STARTING_POSITIONS: 
-            new_snake_block = Turtle("square")
-            new_snake_block.color("white")
-            new_snake_block.penup()
-            new_snake_block.goto(position)
-            self.snake_blocks.append(new_snake_block)
+            self.add_block(position)
+
+    def add_block(self, position): 
+        new_snake_block = Turtle("square")
+        new_snake_block.color("white")
+        new_snake_block.penup()
+        new_snake_block.goto(position)
+        self.snake_blocks.append(new_snake_block)
+
+    def gen_new_block(self): 
+        self.add_block(self.snake_blocks[-1].position())
 
     def move(self): 
         for block in range(len(self.snake_blocks)-1, 0, -1): 
@@ -43,3 +49,4 @@ class Snake:
     def right(self): 
         if self.head.heading() != LEFT: 
             self.head.setheading(RIGHT)
+
